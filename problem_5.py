@@ -14,17 +14,15 @@ import problem_4 as p4
 
 
 def get_distrubution(so1,so2): #caculate distribution of normalized probability (e.g : {P(a|bb), 0.5})
-
-
+    prob1 = 0
     distribution1 = {}
     so1 = sorted(so1.items(),key=operator.itemgetter(1),reverse=True)
     so2 = sorted(so2.items(),key=operator.itemgetter(1),reverse=True)
     for a in range(0,len(so1),1):
         for b in range(0, len(so2),1):
             if so1[a][0][0] == so2[b][0][0] and so1[a][0][1] == so2[b][0][1]:
-                prob = (float(so1[a][1])+1)/(so2[b][1]+163898) #�������
+                prob = (float(so1[a][1])+1)/(so2[b][1]+p2.length/2) #�������
                 distribution1[so1[a][0]] = prob
-
     return distribution1
 
 def random_sample_random_sequence(distribution5, N):
@@ -48,10 +46,13 @@ def generate_sample(test,N):
     return distribution
 
 ##########################  test ##################################
-random_result = generate_sample("training.de",30)
+random_result = generate_sample("training.de",30000)
 integrate = ""
 for i in random_result:
     integrate += i
 
+
+
 print random_result
 print integrate
+print p2.length

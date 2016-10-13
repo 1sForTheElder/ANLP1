@@ -12,8 +12,6 @@ import operator
 
 def getNgrams(input, n):    #   function to make a Ngrams model
     input = p2.process_line(input)     #    use the cleanText function to pre
-    print input
-
     output = {} # create a new dictionary
     for i in range(len(input)-n+1):     #   divide them into groups with 3 characters.
         ngramTemp = "".join(input[i:i+n])
@@ -26,15 +24,14 @@ def getNgrams(input, n):    #   function to make a Ngrams model
     return output
 
 def compute_probs(so1,so2): #caculate probability of normalized probability (e.g : {P(a|bb), 0.5})
-
-
-    output1 = {} #�����ֵ�
+    prob1 = 0
+    output1 = {}
     so1 = sorted(so1.items(),key=operator.itemgetter(1),reverse=True)
     so2 = sorted(so2.items(),key=operator.itemgetter(1),reverse=True)
     for a in range(0,len(so1),1):
         for b in range(0, len(so2),1):
             if so1[a][0][0] == so2[b][0][0] and so1[a][0][1] == so2[b][0][1]:
-                prob = (float(so1[a][1])+1)/(so2[b][1]+163898)
+                prob = (float(so1[a][1])+1)/(so2[b][1]+p2.length/2)
 
                 # print so1[a],so2[b]
                 # print prob
@@ -67,8 +64,8 @@ def write_into_file(probs,filename):    #write it into a file
                                     # Test below #
 ############################################################################
 
-test_getNgrams = getNgrams("training.de",3) #read in a training file and try to collect counts
-test_getCaculateProbs = probs("training.de") #read in a training file and try to estimate probability, finally generate a model.
+test_getNgrams = getNgrams("woqu.txt",3) #read in a training file and try to collect counts
+test_getCaculateProbs = probs("woqu.txt") #read in a training file and try to estimate probability, finally generate a model.
 
 write_into_file(test_getCaculateProbs,'prob1.txt')
 
@@ -79,3 +76,4 @@ for i in getContent:
 print test_getCaculateProbs #print the model
 
 print test_getNgrams
+print p2.length
