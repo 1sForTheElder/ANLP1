@@ -81,6 +81,7 @@ def getNgrams(input, n):
         if ngramTemp not in output: #��Ƶͳ��
             output[ngramTemp] = 0 #���͵��ֵ����
         output[ngramTemp] += 1
+    print "hahahahahahaha::",output
 
     return output
 
@@ -318,6 +319,7 @@ testprob1 = {} #training test.txt
 testprob = add_hash("test.txt")
 trigrammm = probs(testprob)
 trigrammm1 = compute_distribution(testprob)
+print "distribution::::" , trigrammm1
 ppt = caculate_perplexity(trigrammm)
 
 print trigrammm1
