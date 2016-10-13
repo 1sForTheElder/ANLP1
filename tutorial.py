@@ -43,13 +43,11 @@ for line in f:
 print sentences[1:100]
 
 
-
-#
-print sentences
 for line in range(len(sentences)-1):
     key = sentences[line][0]
     trigram[key] = float(sentences[line][1])
 # print trigram
 
-str_list = generate_random_sequence(trigram,100000)
+str_list = generate_random_sequence(trigram,10000) #generate random sequence
+print trigram
 print str_list
