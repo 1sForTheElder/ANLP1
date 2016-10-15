@@ -10,6 +10,50 @@ import numpy as np
 import problem_2 as p2  #    so that I can use the function in file problem_2.py
 import operator
 
+def number_of_things_we_saw_once(input):
+    list = []
+    input = sorted(input.items(), key=operator.itemgetter(1))
+    for i in range(0,len(input)-1,1):
+        if input[i][1] == 1:
+            print input[i][1]
+    return list
+
+def generate_Ngrams_List(input):
+
+    unseen = np.array([]);
+    sentence = ['a','m','n','h','n','t','y','t','r','i','#','0','e','.','f','s','r','s','g','j','y','r','s','d','z']
+    inp = ['a','m','n','c','x','s','g','t']
+    for a in range(len(input)-2):
+        a
+voca = ['a','b','c','d','e','f','g','h','i','j','k','l','n','m','o','p','q','r','s','t','u','v','w','x','y','z',' ','#','.']
+
+# def number_of_use_of_the_word(token):
+#     for i in token
+#
+#
+#     return a
+#
+# def the_count_words_with_a_frequency_c(token):
+#
+#     return a
+#
+# def defaultdict():
+#
+#
+# def add_good_turing(tokens):
+#     N = len(tokens) + 1
+#     C = number_of_use_of_the_word(tokens)
+#     N_c = the_count_words_with_a_frequency_c(list(C.values()))
+#     assert(N == sum([k * v for k, v in N_c.items()]))
+#     default_value = N_c[1] / N
+#     model = defaultdict(lambda: default_value)
+#     types = C.keys()
+#     B = len(types)
+#     for _type in types:
+#         c = C[_type]
+#         model[_type] = (c + 1) * N_c[c + 1] / (N_c[c] * N)
+#     return model
+
 def getNgrams(input, n):    #   function to make a Ngrams model
     input = p2.process_line(input)     #    use the cleanText function to pre
     output = {} # create a new dictionary
@@ -64,16 +108,22 @@ def write_into_file(probs,filename):    #write it into a file
                                     # Test below #
 ############################################################################
 
-test_getNgrams = getNgrams("woqu.txt",3) #read in a training file and try to collect counts
-test_getCaculateProbs = probs("woqu.txt") #read in a training file and try to estimate probability, finally generate a model.
+test_getNgrams = getNgrams("training.de",3) #read in a training file and try to collect counts
 
-write_into_file(test_getCaculateProbs,'prob1.txt')
 
-getContent = open('prob1.txt')    #print the file which is just created
-for i in getContent:
-    print i
 
-print test_getCaculateProbs #print the model
+Num = number_of_things_we_saw_once(test_getNgrams)
+# print test_getNgrams['#a0']
 
-print test_getNgrams
-print p2.length
+# test_getCaculateProbs = probs("woqu.txt") #read in a training file and try to estimate probability, finally generate a model.
+#
+# write_into_file(test_getCaculateProbs,'prob1.txt')
+#
+# getContent = open('prob1.txt')    #print the file which is just created
+# for i in getContent:
+#     print i
+#
+# print test_getCaculateProbs #print the model
+#
+# print test_getNgrams
+# print p2.length
