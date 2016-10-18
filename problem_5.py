@@ -14,7 +14,6 @@ import problem_2 as p2
 import problem_4 as p4
 
 
-
 #def get_distrubution(so1,so2): #caculate distribution of normalized probability (e.g : {P(a|bb), 0.5})
 #    prob1 = 0
 #    distribution1 = {}
@@ -43,11 +42,11 @@ def compute_distribution(content):
     trigram2_prob = get_distrubution(trigram2,bigram2)
     return trigram2_prob
 
-# def generate_sample(test,N):
-#     probs = compute_distribution(test)
-#     distribution = random_sample_random_sequence(probs,N)
-#
-#     return distribution
+def generate_sample(test,N):
+    probs = compute_distribution(test)
+    distribution = random_sample_random_sequence(probs,N)
+
+    return distribution
 
 def read_model(input):
     f=open(input)
@@ -68,13 +67,11 @@ def generate_sample(model,N):
         for j in range(0,30):
             if model[900*j][0][0]==result[i-2]:
                 for k in range(0,30):
-                    if model[(900*j)+(30*k)][0][1]==result[i-1]:
+                    if model[900*j+30*k][0][1]==result[i-1]:
                         for l in range(0,30):
-                            prob[l] = model[(900*j)+(30*k)+l][1]
+                            prob[l] = model[900*j+30*k+l][1]
                         bins = np.cumsum(prob)
-                        letter_index = np.digitize(np.array([random.random()]), bins, right=True)
-                        print letter_index
-                        letter = model[(900*j)+(30*k)+letter_index][0][2]
+                        letter = vacabulary[np.digitize(np.array([random.random()]), bins,right=True)]
                         result = result + letter[0]
                         break
                 break
@@ -102,3 +99,9 @@ print result
 #print ('random_result',random_result)
 #print integrate
 #print p2.length
+aaa = '##'
+# for i in range(0,300):
+#     if My_model[i][0][0] == aaa[i-2]:
+#         print 'hjahahaha'
+#     else:
+#         print '00000000000000000000'
